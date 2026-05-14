@@ -19,9 +19,9 @@ flatpak_packages:
   - io.github.flattool.Warehouse
   - net.davidotek.pupgui2
   - org.freedesktop.Piper
-  - org.freedesktop.Platform.VulkanLayer.MangoHud
-  - org.freedesktop.Platform.VulkanLayer.OBSVkCapture
-  - org.freedesktop.Platform.VulkanLayer.vkBasalt
+  - runtime/org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08
+  - runtime/org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08
+  - runtime/org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/stable
   - org.freedesktop.Platform.codecs-extra
   - org.kde.gwenview
   - org.kde.haruna

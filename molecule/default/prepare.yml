@@ -1,0 +1,13 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Ensure basic requirements are present
+      ansible.builtin.package:
+        name:
+          - curl
+          - git
+          - procps-ng
+        state: present
+      ignore_errors: true

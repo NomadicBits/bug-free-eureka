@@ -4,11 +4,26 @@ This repository contains an Ansible playbook designed to automate the setup of e
 
 ## Repository Structure
 
-- `playbook.yml`: The main entry point for the Ansible automation. It handles Flatpak, Homebrew, and Pip package installations.
-- `vars/packages.yml`: The source of truth for package lists. Agents should update this file when adding or removing software.
+- `playbook.yml`: The main entry point for the Ansible automation.
+- `tasks/main.yml`: Contains the actual installation logic.
+- `vars/packages.yml`: The source of truth for package lists.
+- `molecule/`: Contains Molecule tests for Bazzite, Fedora CoreOS, and RHCOS.
 - `inventory.ini`: Configured for `localhost` execution.
 - `ansible.cfg`: Local Ansible configuration.
-- `requirements.yml`: Lists required Ansible collections (e.g., `community.general`).
+- `requirements.yml`: Lists required Ansible collections.
+
+## Testing with Molecule
+
+The repository includes Molecule tests to verify the playbook across different platforms.
+
+```bash
+molecule test
+```
+
+This will spin up Podman containers for:
+- Bazzite
+- Fedora CoreOS (via Fedora image)
+- RHCOS (via UBI image)
 
 ## Package Management Policy
 
