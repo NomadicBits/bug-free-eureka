@@ -1,0 +1,40 @@
+---
+- name: Setup Bazzite Extra Packages
+  hosts: localhost
+  connection: local
+  vars_files:
+    - vars/packages.yml
+
+  tasks:
+    - name: Ensure Flathub repository is enabled
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+    - name: Install Flatpak packages
+      community.general.flatpak:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ flatpak_packages }}"
+
+    - name: Install Homebrew packages
+      community.general.homebrew:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ brew_packages }}"
+      when: brew_packages | length > 0
+
+    - name: Update all Homebrew packages
+      community.general.homebrew:
+        update_homebrew: yes
+        upgrade_all: yes
+      when: brew_packages | length > 0
+
+    - name: Install Pip packages
+      ansible.builtin.pip:
+        name: "{{ item }}"
+        state: present
+        extra_args: --user
+      loop: "{{ pip_packages }}"
+      when: pip_packages | length > 0
